@@ -14,3 +14,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+    $router->get('users',  ['uses' => 'UserController@index']);
+    $router->get('users/{user}', ['uses' => 'UserController@show']);
+    $router->post('users', ['uses' => 'UserController@create']);
+
+    $router->post('/test/', function () use ($router) {
+        return 'Only viewable with token';
+    });
+});
