@@ -19,4 +19,21 @@ class CompendiumController extends Controller
 
         return $res->getBody();
     }
+
+    public function categories()
+    {
+        $auth = json_decode($this->token());
+        $client = new Client();
+        $res = $client->request('GET', 'http://api.tcgplayer.com/catalog/categories', [
+            'headers' => [
+                'Accept'    => 'application/json',
+                'Authorization' => 'bearer '.$auth->access_token
+            ]
+        ]);
+
+        return $res->getBody();
+    }
 }
+
+
+

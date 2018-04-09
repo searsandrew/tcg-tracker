@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-    $router->post('token', ['uses' => 'CompendiumController@token']);
+    $router->post('token', ['uses' => 'CompendiumController@categories']);
 
     $router->get('users',  ['uses' => 'UserController@index']);
     $router->get('users/{user}', ['uses' => 'UserController@show']);
